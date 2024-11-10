@@ -3,8 +3,8 @@ name: Run Cypress Tests with VPN
 on:
   workflow_dispatch:
   schedule:
-    - cron: '20 18 * * *'  # Schedule: every day at 9:00 AM UTC
-
+    - cron: '0 19 * * *'  # Schedule: every day at 19:00 UTC
+    
 jobs:
   cypress-run:
     runs-on: ubuntu-latest

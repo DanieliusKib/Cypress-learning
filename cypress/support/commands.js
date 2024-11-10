@@ -65,13 +65,9 @@ Cypress.Commands.add('CartVerify', (Product_count, WholeWorth, productID) => {
 
         const responseBody = JSON.parse(interception.response.body);
 
-        //cy.log(responseBody.Basket.response.basket.productsNumber);
-        
         expect(responseBody.Basket.response.basket.productsNumber).to.equal(Number(Product_count));
         expect(responseBody.Basket.response.basket.worth).to.equal(Number(WholeWorth));
         expect(responseBody.Basket.response.basket.products[0].id).to.equal(productID);
-
-
 
     });
 });
@@ -93,13 +89,11 @@ Cypress.Commands.add('searchForProduct', (productKeyWord, ProductFullName, Enter
                     const ProductIDExtract = $addtocartbutton.attr('data-product');
                     const ProductPriceExtract = parseFloat($addtocartbutton.parents('.product').find('.price').text().replace('€', '').replace(',', '.').trim());
 
-                    if (EnterFullProductPage) 
-                    {
+                    if (EnterFullProductPage) {
                         cy.contains('.product__name-link', ProductFullName).click(); // Enter product page
                         cy.contains('span', 'Add to cart').click(); // Click 'Add to cart'
-                    } 
-                    else 
-                    {
+                    }
+                    else {
                         cy.get('.product')
                             .contains('.product__name-link', ProductFullName)
                             .parents('.product')
@@ -112,16 +106,13 @@ Cypress.Commands.add('searchForProduct', (productKeyWord, ProductFullName, Enter
 
                 });
             }
-            else 
-            {
+            else {
                 return cy.get('body').then(($ProductsLoaded) => {
-                    if ($ProductsLoaded.text().includes('You have viewed all the products')) 
-                    {
+                    if ($ProductsLoaded.text().includes('You have viewed all the products')) {
                         cy.log('⚠️ All products loaded, still not found ⚠️');
                         return cy.wrap(null); // Return null if product not found
-                    } 
-                    else 
-                    {
+                    }
+                    else {
                         // Load more products if the product is not yet found
                         return LoadMoreProducts().then(() => CheckIfProductIsLoadedOnPage());
                     }
@@ -135,18 +126,15 @@ Cypress.Commands.add('searchForProduct', (productKeyWord, ProductFullName, Enter
             if ($MoreProductsButton.find('.btn.--solid.--medium.--loading').length > 0) {
                 cy.wait(500);
                 return cy.get('body').then(($ProductsLoaded) => {
-                    if ($ProductsLoaded.text().includes('You have viewed all the products')) 
-                    {
+                    if ($ProductsLoaded.text().includes('You have viewed all the products')) {
                         return cy.wrap(null); // Return null if all products loaded
-                    } 
-                    else 
-                    {
+                    }
+                    else {
                         return LoadMoreProducts(); // Continue loading if products still loading
                     }
                 });
-            } 
-            else 
-            {
+            }
+            else {
                 cy.get('.search__load-next.d-flex.justify-content-center .btn.--solid.--medium').as('LoadMore');
                 cy.get('@LoadMore').click();
                 cy.wait(500);
@@ -163,7 +151,7 @@ Cypress.Commands.add('EmptyCart', () => {
             cy.get('.basket__tools').contains('Clear cart').click();//click on clear cart
             cy.get('#logo').click(); //click on logo to go back to main page
         } else {
-            cy.log('Element is not visible, skipping click action');
+            cy.log('shopping cart is empty, skipping empty cart action');
         }
     });
 });
