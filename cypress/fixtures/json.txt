@@ -1,0 +1,79 @@
+{	"Basket": {
+		"response": {
+			"basket": {
+				"productsNumber": 0,
+				"worth": 0,
+				"worth_net": 0,
+				"worth_formatted": "0,00 €",
+				"worth_net_formatted": "0,00 €",
+				"shippingCost": "0.00",
+				"shippingCost_formatted": "0,00 €",
+				"shippingCost_net": "0.00",
+				"shippingCost_net_formatted": "0,00 €",
+				"shippingLimitFree": "19.31",
+				"toShippingFree": "19.31",
+				"shippingLimitFree_formatted": "19,31 €",
+				"toShippingFree_formatted": "19,31 €",
+				"weight": 0,
+				"profit_points": 0,
+				"deliverytime": 0,
+				"currency": "EUR",
+				"shipping_exists": true,
+				"currency_sign": "€",
+				"shipping_time": {
+					"today": "true",
+					"minutes": 0,
+					"hours": 0,
+					"days": 0,
+					"working_days": -1,
+					"time": "2024-10-27 18:42:57",
+					"week_day": "7",
+					"week_amount": 0,
+					"unknown_time": false
+				},
+				"delivery_time": {
+					"today": "true",
+					"minutes": 0,
+					"hours": 0,
+					"days": 0,
+					"working_days": -1,
+					"time": "2024-10-27 18:42:57",
+					"week_day": "7",
+					"week_amount": 0,
+					"unknown_time": false
+				},
+				"products": [],
+				"productsCounter": 0,
+				"user": {
+					"login": "",
+					"client_id": null,
+					"firstname": null,
+					"lastname": null,
+					"partner": null,
+					"invoice_vat": null,
+					"email": null,
+					"wholesaler": false,
+					"wholesale_order": false,
+					"client_id_upc": null
+				}
+			}
+		},
+		"error": 0
+	},
+	"Wishlist": {
+		"response": false,
+		"error": 0
+	},
+	"Snippets": {
+		"response": {
+			"items": []
+		},
+		"error": 0
+	},
+	"ToplayersAndWidgets": {
+		"response": {
+			"items": []
+		},
+		"error": 0
+	}
+}

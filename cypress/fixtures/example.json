@@ -1,0 +1,30 @@
+{
+  "Shop": {
+    "Order": {
+      "Details": {
+        "itemsCount": 3,
+        "totalAmount": 120.5,
+        "currency": "USD",
+        "items": [
+          {
+            "id": "A123",
+            "name": "Laptop",
+            "price": 100.0,
+            "quantity": 1
+          },
+          {
+            "id": "B456",
+            "name": "Mouse",
+            "price": 20.5,
+            "quantity": 1
+          }
+        ]
+      },
+      "Customer": {
+        "id": "C789",
+        "name": "Alice Johnson",
+        "email": "alice@example.com"
+      }
+    }
+  }
+}

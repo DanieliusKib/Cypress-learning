@@ -1,0 +1,63 @@
+name: Run Cypress Tests with VPN
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '20 18 * * *'  # Schedule: every day at 9:00 AM UTC
+
+jobs:
+  cypress-run:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16'  # Use the compatible Node.js version for Cypress
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Install OpenVPN
+        run: sudo apt-get update && sudo apt-get install -y openvpn
+
+      - name: Set up VPN configuration file
+        # Write the VPN config from secret to a file
+        run: echo "${{ secrets.VPN_CONFIG }}" > vpn-config.ovpn
+
+      - name: Set up OpenVPN auth file
+        # Create a file for OpenVPN authentication with username and password
+        run: |
+          echo -e "${{ secrets.VPN_USERNAME }}\n${{ secrets.VPN_PASSWORD }}" > vpn-auth.txt
+          chmod 600 vpn-auth.txt  # Secure the file so it’s readable only by the owner
+
+      - name: Start OpenVPN
+        # Start OpenVPN in the background using the auth file
+        run: sudo openvpn --config vpn-config.ovpn --auth-user-pass vpn-auth.txt &
+        
+      - name: Wait for VPN connection
+        # Wait for the VPN connection to establish by checking for a tunnel interface (tun0)
+        run: |
+          timeout=30  # Set maximum wait time
+          elapsed=0
+          interval=2  # Interval between checks
+
+          while ! ip a | grep -q tun0; do
+            if [ "$elapsed" -ge "$timeout" ]; then
+              echo "VPN connection not established within $timeout seconds" && exit 1
+            fi
+            echo "Waiting for VPN connection..."
+            sleep $interval
+            elapsed=$((elapsed + interval))
+          done
+
+          echo "VPN connection established."
+
+      - name: Run Cypress tests
+        env:
+          EMAIL: ${{ secrets.EMAIL }}
+          PASSWORD: ${{ secrets.PASSWORD }}
+        run: npx cypress run --spec "\cypress\skelbiu lt ad refresh daily through github actions\Skelbiu_daily_run.cy.js"
