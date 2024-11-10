@@ -4,9 +4,6 @@ on:
   workflow_dispatch:
   schedule:
     - cron: '20 18 * * *'  # Schedule: every day at 9:00 AM UTC
-  push:
-    branches:
-      - main
 
 jobs:
   cypress-run:
