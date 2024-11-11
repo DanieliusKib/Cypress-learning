@@ -11,19 +11,20 @@ To set up the project locally, make sure you have **Node.js** and **npm** instal
    ```bash
    npm install
 
-
 ## Repository Folder Structure
 
-- **.github**
-- **workflows**: CI setup with GitHub Actions for running tests.
+- .github
+  - workflows: CI setup with GitHub Actions for running tests.
 
-- **cypress** -> **e2e** Contains organized test scripts 
-- **Ostrovit eshop mock automated test** : automated test in real life eshop, that logs in, searches for a product by keyword and load more products if needed to select a product and add to cart. After adding to cart cypress intercept cart API and validates if cart JSON values has the same item as selected through UI automation.
-- **Daily CI Pipeline for skelbiu.lt Ad Refresh Automation**: Cypress scripts configured to run daily through a GitHub Actions workflow, automating the process of refreshing ads on skelbiu.lt. This setup demonstrates practical experience with CI pipeline configuration
+- cypress
+  - e2e: Contains organized test scripts
+    - Ostrovit eshop mock automated test: Automated test in a real-life eshop that logs in, searches for a product by keyword, loads more products if needed to select a product and add it to the cart. After adding to the cart, Cypress intercepts the cart API and validates if the cart JSON values have the same item as selected through UI automation.
+    - Daily CI Pipeline for skelbiu.lt Ad Refresh Automation: Cypress scripts configured to run daily through a GitHub Actions workflow, automating the process of refreshing ads on skelbiu.lt. This setup demonstrates practical experience with CI pipeline configuration.
 
-- **Various practice scripts learning in's and out's of cypress functionalities**
-- **fixtures**: Test data used for various tests.
-- **support**: Contains custom commands and reusable functions to support test scripts and enhance Cypress functionalities.
+  - Various practice scripts learning in's and out's of Cypress functionalities
+  - fixtures: Test data used for various tests.
+  - support: Contains custom commands and reusable functions to support test scripts and enhance Cypress functionalities.
+
 
 ## Running Tests locally
 
