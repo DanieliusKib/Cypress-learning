@@ -9,7 +9,7 @@ it('Skelbiu', () => {
         .should('have.css', 'bottom', '0px');
 
 
-    cy.contains('Sutinku su visais slapukais').click();
+    cy.contains('Sutinku').click();
 
     cy.get('#nick-input').type(email);
     cy.get('#password-input').type(password);
