@@ -1,7 +1,7 @@
 it('Skelbiu', () => {
 
-    const email = Cypress.env('EMAIL');
-    const password = Cypress.env('PASSWORD');
+    const email = 'danielius.kibilda@gmail.com';
+    const password = 'm7&KS^A6$#9TY716#5SLgAj%B';
 
     cy.visit('https://www.skelbiu.lt/users/signin');
 
@@ -9,7 +9,7 @@ it('Skelbiu', () => {
         .should('have.css', 'bottom', '0px');
 
 
-    cy.contains('Sutinku').click();
+    cy.get('#onetrust-accept-btn-handler').click();
 
     cy.get('#nick-input').type(email);
     cy.get('#password-input').type(password);
